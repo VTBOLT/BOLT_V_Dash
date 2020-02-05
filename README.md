@@ -1,6 +1,6 @@
 # BOLT V Dashboard
 
-## Installing dependencies
+## Dependencies
 Requires `node v12.14.1^` and `npm v6.13.4^`\
 `npm install` from the dashboard directory to install dependencies
 
