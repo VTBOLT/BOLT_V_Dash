@@ -1,31 +1,23 @@
 import React from 'react';
 import RPMBar from './RPMBar.js';
-import { subscribeToTimer } from './CANListener';
+import { subscribeToCAN } from './CANSubscriber';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-
-    subscribeToTimer((err, timestamp) => this.setState({
-      timestamp
+    this.state = {rpm: 0.0};
+    subscribeToCAN((err, rpm) => this.setState({
+      rpm
     }));
 
     
   }
 
-  state = {
-    timestamp: 'no timestamp yet'
-  };
-
-  
-  // add <RPMBar /> below
   render() {
     return (
       <div className="App">
-        <p className="App-intro">
-          This is the timer value: {this.state.timestamp}
-        </p>
+        <RPMBar rpm={this.state.rpm} />
       </div>
     );
   }

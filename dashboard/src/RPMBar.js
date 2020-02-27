@@ -7,21 +7,14 @@ const rpmBarLength = 783;
 const maxRPM = 8000.0;
 
 class RPMBar extends React.Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = { rpm: 0.0 };
-    }
 
     /**
-     * Takes in an rpm value and returns a string representation of an SVG path dasharray
+     * Returns a string representation of an SVG path dasharray
      * with a length corresponding to the percentage that rpm value is compared to the max rpm
      * TODO enhance this for nonlinear rpm growth
-     * 
-     * @param {int} rpm the new rpm value
      */
-    getDashArray(rpm) {
-        return (this.state.rpm / maxRPM) * rpmBarLength + ' ' + rpmBarLength;
+    getDashArray() {
+        return (this.props.rpm / maxRPM) * rpmBarLength + ' ' + rpmBarLength;
     }
 
     render() {
@@ -41,7 +34,7 @@ class RPMBar extends React.Component {
                         stroke="darkblue" 
                         d={ rpmPath } 
                         fill="none"
-                        strokeDasharray={ this.getDashArray(this.state.rpm) }
+                        strokeDasharray={ this.getDashArray(this.props.rpm) }
                     />
                 </svg>
             </div>
