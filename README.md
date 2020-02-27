@@ -10,5 +10,5 @@ vCAN testing requires Linux Can-utils https://elinux.org/Can-utils or MacOS equi
 ## Usage
 Run `vCanScripts/VCAN_SETUP.sh` with sudo perms to set up a vCAN channel\
 `node server` from the can directory\
-`npm start` to startup React development server\
-`npm run electron-start` to open Electron window displaying React app
+`npm start` from the dashboard directory to startup React development server\
+`npm run electron-start` from the dashboard directory to open Electron window displaying React app
