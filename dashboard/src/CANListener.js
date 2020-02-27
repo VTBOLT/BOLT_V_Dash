@@ -1,32 +1,12 @@
-import React from 'react';
-import can from 'socketcan';
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:8000');
 
-class CANListener extends React.Component {
-    
-    constructor(props) {
-        super(props);
-
-        this.openChannel(false);
-    }
-
-    openChannel(vcan) {
-        console.log("teljslkdfjsldfj");
-        //let channel = can.createRawChannel("vcan0");
-        // channel.addListener("onMessage", function(msg) {
-        //     switch (msg["id"]) {
-        //         case 0x0a5:
-        //             console.log("got hex a5 lksdjflksj");
-        //     }
-        // });
-    }
-
-    render() {
-        return null;
-    }
-
+function subscribeToTimer(cb) {
+    socket.on('timer', timestamp => cb(null, timestamp));
+    socket.emit('subscribeToTimer', 1000);
 }
 
-export default CANListener;
+export { subscribeToTimer }
   
 // function can_test() {
 //     // 3 hexdigit address, 5 hexdigit value
