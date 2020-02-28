@@ -1,10 +1,25 @@
 import React from 'react';
-import { getSocket } from './CANSubscriber';
+import { getSocket } from '../CANSubscriber';
+import styles from './RPMBar.module.css';
 
-const rpmPath = 'M 15 120 L 60 90 C 135 45 180 30 285 30 L 780 30';
-const svgBox = '0 0 800 150';
-const rpmWidth = '50';
-const rpmBarLength = 783;
+const rpmPath = 'M 20 124 L 65 94 C 140 49 185 34 290 34 L 785 34';
+const borderPath = 'M 35 147' + 
+                    'C 140 75 185 60 290 62' +
+                    // curved corners at end
+                    // 'L 767 62' +
+                    // 'C 787 62 787 62 787 42' +
+                    // 'L 787 26' +
+                    // 'C 787 7 787 7 767 7' +
+                    // 'L 290 7' +
+                    'L 787 62' +
+                    'L 787 7' +
+                    'L 290 7' +
+                    'C 180 7 105 25 5 100' +
+                    'L 38 149';
+const svgBox = '0 0 800 175';
+const rpmWidth = '55';
+const borderWidth = '6';
+const rpmBarLength = 785;
 const maxRPM = 8000.0;
 
 class RPMBar extends React.Component {
@@ -29,8 +44,8 @@ class RPMBar extends React.Component {
 
     render() {
         return (
-            <div>
-                <svg viewBox={ svgBox }>
+            <div className={ styles.rpmContainer }>
+                <svg viewBox={ svgBox } className={ styles.svgBox }>
                     <path 
                         id="rpmBackground"
                         strokeWidth={ rpmWidth } 
@@ -46,8 +61,15 @@ class RPMBar extends React.Component {
                         fill="none"
                         strokeDasharray={ this.getDashArray(this.state.rpm) }
                     />
+                    <path 
+                        id="rpmBorder"
+                        strokeWidth={ borderWidth }
+                        stroke="black"
+                        d={ borderPath }
+                        fill="none"
+                    />
                 </svg>
-                <h1>{this.state.rpm}</h1>
+                <p className={ styles.rpmText }>{this.state.rpm}</p>
             </div>
         )
     }

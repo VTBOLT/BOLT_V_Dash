@@ -1,5 +1,5 @@
 import React from 'react';
-import RPMBar from './RPMBar.js';
+import RPMBar from './RPMBar/RPMBar.js';
 import { subscribeToCAN } from './CANSubscriber';
 
 class App extends React.Component {

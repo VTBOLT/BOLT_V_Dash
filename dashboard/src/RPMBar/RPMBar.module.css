@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "DigitalMonospace";
+    src: url("../fonts/digitalmonospace.ttf");
+}
+
+.rpmContainer {
+    width: 100%;
+}
+
+.svgBox {
+    /* background-color: red; */
+    padding-top: 10px;
+    padding-left: 5px;
+}
+
+.rpmText {
+    position: absolute;
+    left: 220px;
+    top: 20px;
+    font-family: DigitalMonospace;
+    font-size: 75px;
+}
