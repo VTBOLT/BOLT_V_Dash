@@ -6,7 +6,6 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {rpm: 0.0};
     subscribeToCAN();    
   }
 
