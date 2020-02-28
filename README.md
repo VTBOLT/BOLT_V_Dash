@@ -10,7 +10,7 @@ vCAN testing requires:
   - Python 2.7^ and python-can library
 
 ## Usage
-`vCanScripts/VCAN_SETUP.sh` with sudo perms to set up a vCAN channel\
+`vCANScripts/VCAN_SETUP.sh` with sudo perms to set up a vCAN channel\
 `node server` from the can directory\
 `npm start` from the dashboard directory to startup React development server\
 `npm run electron-start` from the dashboard directory to open Electron window displaying React app\
