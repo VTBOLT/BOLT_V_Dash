@@ -1,4 +1,5 @@
 import React from 'react';
+import { getSocket } from './CANSubscriber';
 
 const rpmPath = 'M 15 120 L 60 90 C 135 45 180 30 285 30 L 780 30';
 const svgBox = '0 0 800 150';
@@ -8,13 +9,22 @@ const maxRPM = 8000.0;
 
 class RPMBar extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {rpm: 0};
+        getSocket().on('rpm', (rpm) => this.setState({
+            rpm
+        }));
+
+    }
+
     /**
      * Returns a string representation of an SVG path dasharray
      * with a length corresponding to the percentage that rpm value is compared to the max rpm
      * TODO enhance this for nonlinear rpm growth
      */
     getDashArray() {
-        return (this.props.rpm / maxRPM) * rpmBarLength + ' ' + rpmBarLength;
+        return (this.state.rpm / maxRPM) * rpmBarLength + ' ' + rpmBarLength;
     }
 
     render() {
@@ -34,9 +44,10 @@ class RPMBar extends React.Component {
                         stroke="darkblue" 
                         d={ rpmPath } 
                         fill="none"
-                        strokeDasharray={ this.getDashArray(this.props.rpm) }
+                        strokeDasharray={ this.getDashArray(this.state.rpm) }
                     />
                 </svg>
+                <h1>{this.state.rpm}</h1>
             </div>
         )
     }

@@ -7,17 +7,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {rpm: 0.0};
-    subscribeToCAN((err, rpm) => this.setState({
-      rpm
-    }));
-
-    
+    subscribeToCAN();    
   }
 
   render() {
     return (
       <div className="App">
-        <RPMBar rpm={this.state.rpm} />
+        <RPMBar />
       </div>
     );
   }
