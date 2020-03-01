@@ -1,0 +1,52 @@
+@font-face {
+    font-family: "DigitalMonospace";
+    src: url("../fonts/digitalmonospace.ttf");
+}
+
+@font-face {
+    font-family: "Tahoma";
+    src: url("../fonts/tahoma.ttf");
+}
+
+.rpmContainer {
+    width: 100%;
+}
+
+.svgBox {
+    padding-left: 5px;
+}
+
+.rpmText {
+    position: absolute;
+    left: 250px;
+    top: 5px;
+    font-family: DigitalMonospace;
+    font-size: 80px;
+    text-align: right;
+}
+
+div > p {
+    font-family: Tahoma;
+    font-size: 25px;
+    position: absolute;
+}
+
+#rpm2k {
+    left: 196px;
+    top: 8px;
+}
+
+#rpm4k {
+    top: 1px;
+    left: 388px;
+}
+
+#rpm6k {
+    top: 1px;
+    left: 580px;
+}
+
+#rpmScale {
+    top: -10px;
+    font-size: 20px;
+}
