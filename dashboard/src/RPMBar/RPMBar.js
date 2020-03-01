@@ -17,8 +17,15 @@ const borderPath = 'M 35 147' +
                     'C 180 7 105 25 5 100' +
                     'L 38 149';
 const svgBox = '0 0 800 175';
+const marker2k = 'M 188 15' +
+                 'L 200 70';
+const marker4k = 'M 391 10' +
+                 'L 391 60';
+const marker6k = 'M 586 10' +
+                 'L 586 60';
 const rpmWidth = '55';
 const borderWidth = '6';
+const markerWidth = '2';
 const rpmBarLength = 785;
 const maxRPM = 8000.0;
 
@@ -68,8 +75,36 @@ class RPMBar extends React.Component {
                         d={ borderPath }
                         fill="none"
                     />
+                    <path 
+                        id="2kmark"
+                        strokeWidth={ markerWidth }
+                        stroke="black"
+                        d={ marker2k }
+                        fill="none"
+                        strokeDasharray="15 25"
+                    />
+                    <path 
+                        id="4kmark"
+                        strokeWidth={ markerWidth }
+                        stroke="black"
+                        d={ marker4k }
+                        fill="none"
+                        strokeDasharray="12 25"
+                    />
+                    <path 
+                        id="6kmark"
+                        strokeWidth={ markerWidth }
+                        stroke="black"
+                        d={ marker6k }
+                        fill="none"
+                        strokeDasharray="12 25"
+                    />
                 </svg>
                 <p className={ styles.rpmText }>{this.state.rpm}</p>
+                <p id={ styles.rpmScale }>x1000 RPM</p>
+                <p id={ styles.rpm2k }>2</p>
+                <p id={ styles.rpm4k }>4</p>
+                <p id={ styles.rpm6k }>6</p>
             </div>
         )
     }
