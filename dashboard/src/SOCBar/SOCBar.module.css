@@ -1,0 +1,20 @@
+.socContainer {
+    width: 60%;
+    /* border: 1px solid red; */
+    margin-left: 19%;
+    margin-top: -5%;
+}
+
+.socSVGBox {
+    padding-left: 4%;
+    padding-top: 2%;
+}
+
+#socText {
+    position: absolute;
+    font-family: DigitalMonospace;
+    font-size: 60px;
+    top: 28.5%;
+    left: 45.2%;
+    /* color: white; */
+}

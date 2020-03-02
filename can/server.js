@@ -1,9 +1,10 @@
 const io = require('socket.io')();
 const can = require('socketcan');      
-const mtrTempFrontAddr = 0x0a2; // bytes 4 and 5 with .1 scale
+
 const rpmAddr = 0x0a5;
-const dclAddr = 0x6b1;
 const socAddr = 0x6b2;
+const mtrTempFrontAddr = 0x0a2; // bytes 4 and 5 with .1 scale
+const dclAddr = 0x6b1;
 const mcTempsAddr = 0x0a0;
 const bmsTempsAddr = 0x6b4;
 const mcInternalAddr = 0x0aa;
@@ -29,6 +30,10 @@ function canRunner(client) {
             case rpmAddr:
                 let rpm = (msg['data'][3] << 8) + msg['data'][2];
                 client.emit('rpm', rpm);
+                break;
+            case socAddr:
+                let soc = ((msg['data'][1] << 8) + msg['data'][0]) * 0.5;
+                client.emit('soc', soc);
                 break;
             default:
                 console.log('not a valid address');

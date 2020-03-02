@@ -16,7 +16,7 @@ const borderPath = 'M 35 147' +
                     'L 290 7' +
                     'C 180 7 105 25 5 100' +
                     'L 38 149';
-const svgBox = '0 0 800 175';
+const rpmSVGBox = '0 0 800 175';
 const marker2k = 'M 188 15' +
                  'L 200 70';
 const marker4k = 'M 391 10' +
@@ -52,7 +52,7 @@ class RPMBar extends React.Component {
     render() {
         return (
             <div className={ styles.rpmContainer }>
-                <svg viewBox={ svgBox } className={ styles.svgBox }>
+                <svg viewBox={ rpmSVGBox } className={ styles.rpmSVGBox }>
                     <path 
                         id="rpmBackground"
                         strokeWidth={ rpmWidth } 
@@ -100,7 +100,7 @@ class RPMBar extends React.Component {
                         strokeDasharray="12 25"
                     />
                 </svg>
-                <p className={ styles.rpmText }>{this.state.rpm}</p>
+                <p id={ styles.rpmText }>{this.state.rpm}</p>
                 <p id={ styles.rpmScale }>x1000 RPM</p>
                 <p id={ styles.rpm2k }>2</p>
                 <p id={ styles.rpm4k }>4</p>
