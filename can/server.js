@@ -38,6 +38,7 @@ function canRunner(client) {
                 if (coolantTemp >= 0 && coolantTemp <= 80) {
                     client.emit('coolantTemp', coolantTemp);    
                 }
+                break;
             default:
                 console.log('not a valid address');
                 break;
