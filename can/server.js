@@ -23,15 +23,21 @@ function canRunner(client) {
         switch (msg['id']) {
             case rpmAddr:
                 let rpm = (msg['data'][3] << 8) + msg['data'][2];
-                client.emit('rpm', rpm);
+                if (rpm >= 0 && rpm <= 8000) {
+                    client.emit('rpm', rpm);
+                }
                 break;
             case socAddr:
                 let soc = ((msg['data'][1] << 8) + msg['data'][0]) * 0.5;
-                client.emit('soc', soc);
+                if (soc >= 0 && soc <= 100) {
+                    client.emit('soc', soc);
+                }
                 break;
             case mtrTempFrontAddr:
                 let coolantTemp = ((msg['data'][5] << 8) + msg['data'][4]) * 0.1;
-                client.emit('coolantTemp', coolantTemp);    
+                if (coolantTemp >= 0 && coolantTemp <= 80) {
+                    client.emit('coolantTemp', coolantTemp);    
+                }
             default:
                 console.log('not a valid address');
                 break;
