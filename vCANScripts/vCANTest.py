@@ -13,9 +13,12 @@ def sendLoop():
     rpmLow = 0
     socHigh = 0
     socLow = 200
+    mtrTempHigh = 0
+    mtrTempLow = 0
     while 1:
         rpmLow += 50
         socLow -= 1
+        mtrTempLow += 1
 
         if (rpmLow >= 255):
             rpmLow = 0
@@ -28,10 +31,20 @@ def sendLoop():
         if (socLow == 0):
             socLow = 200
 
+        if (mtrTempLow >= 255):
+            mtrTempLow = 0
+            mtrTempHigh += 1
+
+        if (mtrTempHigh == 3 and mtrTempLow == 32):
+            mtrTempLow = 0
+            mtrTempHigh = 0
+            
         rpmMsg = can.Message(arbitration_id = 0x0a5, data = [0, 0, rpmLow, rpmHigh], is_extended_id = False)
         socMsg = can.Message(arbitration_id=0x6b2, data = [socLow, socHigh, 0, 0], is_extended_id = False)
+        mtrTempMsg = can.Message(arbitration_id=0x0a2, data = [0, 0, 0, 0, mtrTempLow, mtrTempHigh], is_extended_id = False)
         bus.send(rpmMsg)
         bus.send(socMsg)
+        bus.send(mtrTempMsg)
         time.sleep(0.01)
         
 
