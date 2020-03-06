@@ -1,22 +1,21 @@
-.socContainer {
+.coolantTempContainer {
     width: 100%;
     border: 1px solid white;
-    /* margin-top: 0%; */
-    
+    margin-top: -13.2%;
 }
 
-#socText {
+#coolantText {
     position: absolute;
     font-family: DigitalMonospace;
     font-size: 50px;
     margin-top: -8.5%;
-    margin-left: 21.5%;
+    margin-left: 70.5%;
 }
 
-#socLabel {
+#coolantLabel {
     position: absolute;
     font-family: Tahoma;
     margin-top: -13%;
-    margin-left: 21.5%;
+    margin-left: 62.8%;
     font-size: 25px;
 }

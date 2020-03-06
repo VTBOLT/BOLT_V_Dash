@@ -4,12 +4,6 @@ const can = require('socketcan');
 const rpmAddr = 0x0a5;
 const socAddr = 0x6b2;
 const mtrTempFrontAddr = 0x0a2; // bytes 4 and 5 with .1 scale
-const dclAddr = 0x6b1;
-const mcTempsAddr = 0x0a0;
-const bmsTempsAddr = 0x6b4;
-const mcInternalAddr = 0x0aa;
-const mcErrorAddr = 0x0ab;
-const dcBusVAddr = 0x0a7;
 
 io.on('connection', (client) => {
     // start emitting events (i.e. can data frames)
@@ -35,6 +29,9 @@ function canRunner(client) {
                 let soc = ((msg['data'][1] << 8) + msg['data'][0]) * 0.5;
                 client.emit('soc', soc);
                 break;
+            case mtrTempFrontAddr:
+                let coolantTemp = ((msg['data'][5] << 8) + msg['data'][4]) * 0.1;
+                client.emit('coolantTemp', coolantTemp);    
             default:
                 console.log('not a valid address');
                 break;

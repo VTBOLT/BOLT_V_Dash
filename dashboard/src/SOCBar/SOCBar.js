@@ -3,10 +3,10 @@ import { getSocket } from '../CANSubscriber';
 import styles from './SOCBar.module.css';
 
 const socPath = 'M 10 27.5 L 190 27.5';
-const socBorderPath = 'M 10 10 L 190 10 L 190 45 L 10 45 L 10 8.7';
-const socWidth = '35';
-const borderWidth = '2.8';
-const socSVGBox = '0 0 220 60';
+const socBorderPath = 'M 10 16 L 190 16 L 190 39 L 10 39 L 10 15.5';
+const socWidth = '23';
+const borderWidth = '1';
+const socSVGBox = '0 0 400 50';
 
 class SOCBar extends React.Component {
 
@@ -20,7 +20,7 @@ class SOCBar extends React.Component {
     }
 
     getSOCPath() {
-        let endVal = ((this.state.soc / 100.0) * 180.0) + 10
+        let endVal = ((this.state.soc / 100.0) * 180.0) + 10;
         return 'M 10 27.5 L ' + endVal.toFixed(3) + ' 27.5';
     }
 
@@ -51,6 +51,8 @@ class SOCBar extends React.Component {
                     />
                 </svg>
                 <p id={ styles.socText }>{ this.state.soc.toFixed(0) }</p>
+                <p id={ styles.socLabel }>SOC</p>
+
             </div>
 
         )

@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "DigitalMonospace";
+    src: url("fonts/digitalmonospace.ttf");
+}
+
+@font-face {
+    font-family: "Tahoma";
+    src: url("fonts/tahoma.ttf");
+}
+
+#bars {
+    /* border: 1px solid red; */
+    margin-top: 17%;
+}

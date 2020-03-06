@@ -1,13 +1,3 @@
-@font-face {
-    font-family: "DigitalMonospace";
-    src: url("../fonts/digitalmonospace.ttf");
-}
-
-@font-face {
-    font-family: "Tahoma";
-    src: url("../fonts/tahoma.ttf");
-}
-
 .rpmContainer {
     width: 100%;
     /* border: 1px solid red; */
@@ -20,7 +10,7 @@
 #rpmText {
     position: absolute;
     left: 25%;
-    top: 2%;
+    top: 0%;
     font-family: DigitalMonospace;
     font-size: 80px;
     text-align: right;
