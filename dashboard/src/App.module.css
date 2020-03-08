@@ -8,7 +8,21 @@
     src: url("fonts/tahoma.ttf");
 }
 
+* {
+    user-select: none;
+}
+
 #bars {
     /* border: 1px solid red; */
     margin-top: 17%;
+}
+
+#debugContainer {
+    border: 5px solid darkorange;
+    margin-top: -25px;
+    height: 275px;
+}
+
+.hidden {
+    display: none;
 }

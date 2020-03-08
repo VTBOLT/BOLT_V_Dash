@@ -1,0 +1,67 @@
+.itemContainer {
+    text-align: center;
+    width: 25%;
+    display: inline-block;
+    padding: 2px 0px;
+}
+
+.panelContainer {
+    width: 100%;
+    background: lightgrey;
+    /* border: 1px solid black; */
+}
+
+.itemName {
+    font-family: Tahoma;
+    font-size: 33px;
+    padding: 0;
+    margin: 0;
+}
+
+.itemValue {
+    font-family: DigitalMonospace;
+    font-size: 60px;
+    padding: 0;
+    margin: 0;
+}
+
+
+.itemContainer:nth-child(1),
+.itemContainer:nth-child(3),
+.itemContainer:nth-child(6),
+.itemContainer:nth-child(8),
+.itemContainer:nth-child(9),
+.itemContainer:nth-child(11) {
+    background: darkorange;
+}
+
+#debugFault {
+    position: absolute;
+    top: 21%;
+    right: 8px;
+    width: 47.8%;
+    border: 5px solid darkorange;
+    border-bottom: 0;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#debugFault span {
+    padding-bottom: 20px;
+    font-size: 33px;
+    font-family: Tahoma;
+}
+
+#debugButton {
+    position: absolute;
+    font-size: 54px;
+    left: 50.5%;
+    top: 21.5%;
+    background: lightgrey;
+}
+
+#debugButton span {
+    border-right: 5px solid darkorange;
+    border-bottom: 5px solid darkorange;
+}
