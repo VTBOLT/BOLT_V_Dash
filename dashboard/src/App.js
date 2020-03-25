@@ -13,17 +13,26 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { debugOpen: false }
-    subscribeToCAN();    
+    subscribeToCAN(); 
+  }
+
+  toggleState() {
+    console.log(this.state.debugOpen)
+    this.setState(prevState => ({
+      debugOpen: !prevState.debugOpen
+    }));
   }
 
   render() {
     return (
       <div className="App">
         <RPMBar />
+        <div onClick={ () => this.toggleState() }>
+          <DebugButton open={ this.state.debugOpen } />
+        </div>
         <div 
           id={ styles.bars } 
           style={ this.state.debugOpen ? {"display": "none"} : {} }
-          onClick={ () => this.setState({debugOpen: true}) }
         >
           <SOCBar />
           <CoolantTempBar />
@@ -32,7 +41,6 @@ class App extends React.Component {
           id={ styles.debugContainer } 
           style={ this.state.debugOpen ? {} : {"display": "none"} }
         >
-          <DebugButton />
           <DebugFault />
           <DebugPanel />
         </div>
@@ -43,8 +51,3 @@ class App extends React.Component {
 
 export default App;
 
-// <RPMBar />
-//         <div id={ styles.bars }>
-//           <SOCBar />
-//           <CoolantTempBar />
-//         </div>

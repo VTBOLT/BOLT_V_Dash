@@ -53,7 +53,7 @@
     font-family: Tahoma;
 }
 
-#debugButton {
+/* #debugButton {
     position: absolute;
     font-size: 54px;
     left: 50.5%;
@@ -64,4 +64,5 @@
 #debugButton span {
     border-right: 5px solid darkorange;
     border-bottom: 5px solid darkorange;
-}
+} */
+
