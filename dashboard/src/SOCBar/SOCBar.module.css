@@ -1,6 +1,7 @@
 .socContainer {
     width: 100%;
-    border: 1px solid white;
+    padding-bottom: 2px;
+    /* border: 1px solid white; */
     /* margin-top: 0%; */
     
 }

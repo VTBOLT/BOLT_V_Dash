@@ -1,0 +1,9 @@
+#faultMessage {
+    display: inline-block;
+    margin-top: 24%;
+    
+    font-family: Arial;
+    font-weight: 900;
+    font-size: 65px;
+    color: white;
+}

@@ -1,9 +1,14 @@
 const io = require('socket.io')();
 const can = require('socketcan');      
 
-const rpmAddr = 0x0a5;
-const socAddr = 0x6b2;
+// Constants for calculating MPH
+const WHEEL_DIAMETER = 25.66 * (60.0 / 63360.0); // in miles
+const GEAR_RATIO = 17.0 / 49.0; // EVO gear ratio
+
+const rpmAddr = 0x0a5; // bytes 2 and 3
+const socAddr = 0x6b2; // bytes 0 and 1 with 0.5 scale
 const mtrTempFrontAddr = 0x0a2; // bytes 4 and 5 with .1 scale
+const bmsTempsAddr = 0x6b4;
 
 io.on('connection', (client) => {
     // start emitting events (i.e. can data frames)
@@ -25,19 +30,33 @@ function canRunner(client) {
                 let rpm = (msg['data'][3] << 8) + msg['data'][2];
                 if (rpm >= 0 && rpm <= 8000) {
                     client.emit('rpm', rpm);
+                    client.emit('RPM', rpm);
+                    let mph = rpm * WHEEL_DIAMETER * GEAR_RATIO * Math.PI;
+                    client.emit('Speed', mph);
+                    client.emit('fault', 'OVER-CURRENT FAULT');
                 }
                 break;
             case socAddr:
                 let soc = ((msg['data'][1] << 8) + msg['data'][0]) * 0.5;
                 if (soc >= 0 && soc <= 100) {
                     client.emit('soc', soc);
+                    client.emit('SOC', soc);
                 }
                 break;
             case mtrTempFrontAddr:
                 let coolantTemp = ((msg['data'][5] << 8) + msg['data'][4]) * 0.1;
                 if (coolantTemp >= 0 && coolantTemp <= 80) {
-                    client.emit('coolantTemp', coolantTemp);    
+                    client.emit('coolantTemp', coolantTemp);
+                    client.emit('MC Temp', coolantTemp);
+                    client.emit('Motor Temp', coolantTemp);    
                 }
+                break;
+            case bmsTempsAddr:
+                // note 'high' and 'low' are current values, not a running min/max
+                let highCellTemp = ((msg['data'][1] << 8) + msg['data'][0]);
+                let lowCellTemp = ((msg['data'][3] << 8) + msg['data'][2]);
+                client.emit('High Cell', highCellTemp);
+                client.emit('Low Cell', lowCellTemp);
                 break;
             default:
                 console.log('not a valid address');

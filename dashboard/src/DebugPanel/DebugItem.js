@@ -9,7 +9,7 @@ class DebugItem extends React.Component {
         let name = this.props.name;
         this.state = {name: 888.88};
         getSocket().on(name, (value) => this.setState({
-            name: value
+            name: value.toFixed(2)
         }));
     }
 

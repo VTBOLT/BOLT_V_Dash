@@ -1,6 +1,5 @@
 import React from 'react';
 import DebugItem from './DebugItem';
-import { getSocket } from '../CANSubscriber';
 import styles from './DebugPanel.module.css';
 
 class DebugPanel extends React.Component {

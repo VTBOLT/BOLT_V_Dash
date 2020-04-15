@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './DebugPanel.module.css';
 
 const closedStyle = {
     position: 'absolute',

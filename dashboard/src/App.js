@@ -7,6 +7,7 @@ import styles from './App.module.css';
 import { subscribeToCAN } from './CANSubscriber';
 import DebugFault from './DebugPanel/DebugFault.js';
 import DebugButton from './DebugPanel/DebugButton.js';
+import FaultPanel from './FaultPanel/FaultPanel.js';
 
 class App extends React.Component {
 
@@ -17,7 +18,6 @@ class App extends React.Component {
   }
 
   toggleState() {
-    console.log(this.state.debugOpen)
     this.setState(prevState => ({
       debugOpen: !prevState.debugOpen
     }));
@@ -27,6 +27,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <RPMBar />
+        <FaultPanel />
         <div onClick={ () => this.toggleState() }>
           <DebugButton open={ this.state.debugOpen } />
         </div>
