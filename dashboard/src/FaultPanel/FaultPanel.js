@@ -2,6 +2,13 @@ import React from 'react';
 import { getSocket } from '../CANSubscriber';
 import styles from './FaultPanel.module.css';
 
+//enum for faults
+const FaultLevel = {
+    LOW: 1,
+    MID: 2,
+    HIGH: 3
+};
+
 //run faults (low byte) dict
 const run_lo_fault_dict = {
     0x0001: ['Motor Over-speed Fault', FaultLevel.LOW],
@@ -68,13 +75,6 @@ var post_hi_fault_dict = {
     0x0400: ['EEPROM Update Required', FaultLevel.LOW],
     0x4000: ['Brake Shorted', FaultLevel.HIGH],
     0x8000: ['Brake Open', FaultLevel.HIGH]
-};
-
-//enum for faults
-const FaultLevel = {
-    LOW: 1,
-    MID: 2,
-    HIGH: 3
 };
 
 const activeStyle = {
@@ -145,23 +145,23 @@ class FaultPanel extends React.Component {
         let postHI = faultBytes[3];
         
         let faultSet = new Set();
-        let runLObits = twoBytesToBits(runLO);
+        let runLObits = this.twoBytesToBits(runLO);
         runLObits.forEach(element => {
           faultSet.add(run_lo_fault_dict[element]);
         });
-        let runHIbits = twoBytesToBits(runHI);
+        let runHIbits = this.twoBytesToBits(runHI);
         runHIbits.forEach(element => {
           faultSet.add(run_hi_fault_dict[element]);
         });
-        let postLObits = twoBytesToBits(postLO);
+        let postLObits = this.twoBytesToBits(postLO);
         postLObits.forEach(element => {
           faultSet.add(post_lo_fault_dict[element]);
         });
-        let postHIbits = twoBytesToBits(postHI);
+        let postHIbits = this.twoBytesToBits(postHI);
         postHIbits.forEach(element => {
           faultSet.add(post_hi_fault_dict[element]);
         });
-        let highestError = analyzeFaultSet(faultSet);
+        let highestError = this.analyzeFaultSet(faultSet);
         
         return highestError;
     }
@@ -184,7 +184,7 @@ class FaultPanel extends React.Component {
 
     // fault codes occupy less than a full byte, so we use this to convert the bytes to arrays of bits
     twoBytesToBits(bytes) {
-        byteArr = [];
+        let byteArr = [];
         for(var i = 65536; i >= 1; i/= 2) {
           if(bytes & i) {
             byteArr.push(i);
