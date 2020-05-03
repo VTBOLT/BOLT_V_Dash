@@ -9,6 +9,7 @@ const rpmAddr = 0x0a5; // bytes 2 and 3
 const socAddr = 0x6b2; // bytes 0 and 1 with 0.5 scale
 const mtrTempFrontAddr = 0x0a2; // bytes 4 and 5 with .1 scale
 const bmsTempsAddr = 0x6b4;
+const mcErrorAddr = 0x0ab;
 
 io.on('connection', (client) => {
     // start emitting events (i.e. can data frames)
@@ -33,7 +34,6 @@ function canRunner(client) {
                     client.emit('RPM', rpm);
                     let mph = rpm * WHEEL_DIAMETER * GEAR_RATIO * Math.PI;
                     client.emit('Speed', mph);
-                    client.emit('fault', 'OVER-CURRENT FAULT');
                 }
                 break;
             case socAddr:
@@ -57,6 +57,14 @@ function canRunner(client) {
                 let lowCellTemp = ((msg['data'][3] << 8) + msg['data'][2]);
                 client.emit('High Cell', highCellTemp);
                 client.emit('Low Cell', lowCellTemp);
+                break;
+            case mcErrorAddr:
+                post_lo_fault = (msg["data"][1] << 8) + msg["data"][0];
+                post_hi_fault = (msg["data"][3] << 8) + msg["data"][2];
+                run_lo_fault = (msg["data"][5] << 8) + msg["data"][4];
+                run_hi_fault = (msg["data"][7] << 8) + msg["data"][6];
+        
+                client.emit('fault', [run_lo_fault, run_hi_fault, post_lo_fault, post_hi_fault]);
                 break;
             default:
                 console.log('not a valid address');
