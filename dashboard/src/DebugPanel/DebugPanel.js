@@ -16,12 +16,12 @@ class DebugPanel extends React.Component {
                 <DebugItem name="DCL" />
                 <DebugItem name="DC Bus V" />
                 <DebugItem name="DC Bus A" />
-                <DebugItem name="?????" />
+                <DebugItem name="Latitude" />
 
                 <DebugItem name="Speed" />
                 <DebugItem name="SOC" />
                 <DebugItem name="RPM" />
-                <DebugItem name="?????" />
+                <DebugItem name="Longitude" />
             </div>
         )
     }
